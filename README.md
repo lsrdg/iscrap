@@ -11,18 +11,33 @@ Acordding to the
 > a new version, look over the appropriate forum to see if there have been any
 > reported problems. 
 
-And they are right, one should be at least following the lastest news before
+And they are right, one should be at least following the latest news before
 upgrading.
+
+### Heads up!
+
+`lsrdg/archlinux-scrapUP` is damn small script, wrote by an un-developer and it
+has such a tiny functionality that it shouldn't deserve your attention. It was
+written for personal use _only_. 
+
+If you are *serious* about checking everything before the system upgrade, you
+probably want to check these links out:
+
+- [Pacmatic](http://kmkeen.com/pacmatic/) > Get emails about pending system
+  updates with cron-pacmatic
+- [Pacman/Tips and tricks -
+  utilities](https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Utilities)
+  > wiki.archlinux.org page with real tips.
 
 ## scrapUP
 
-Archlinux-scrapUP will just show you the title of the lastest new from
+Archlinux-scrapUP will just show you the title of the latest new from
 archlinux.org before calling for `$ sudo pacman -Syu`. If the news's header is
 kind of new for you, you should probably avoid upgrading. In instead, go find
 out if you should something.
 
 PS: I'm no ArchExpert. The words above are there only for remind me that - damn!
-- I should've read that before!
+- I should have read that before!
 
 ## Requirements
 
@@ -32,7 +47,7 @@ PS: I'm no ArchExpert. The words above are there only for remind me that - damn!
 
 ## Installing
 
-Clone this repo and add the following to your `.bash.rc`:
+Clone this repository and add the following to your `.bash.rc`:
 
 ```
 # scrap archlinux.org before full upgrade
