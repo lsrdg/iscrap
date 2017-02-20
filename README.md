@@ -1,6 +1,6 @@
 # Archlinux.org's scrapper
 
-Acordding to the
+According to the
 [ArchWiki](https://wiki.archlinux.org/index.php/System_maintenance#Read_before_upgrading_the_system):
 
 > Read before upgrading the system
@@ -16,11 +16,11 @@ upgrading.
 
 ### Heads up!
 
-`lsrdg/archlinux-scrapUP` is damn small script, wrote by an un-developer and it
-has such a tiny functionality that it shouldn't deserve your attention. It was
+`lsrdg/archlinux-scrapUP` is just a damn small script, written by an un-developer and it
+has such a tiny functionality that it shouldn't even deserve your attention. It was
 written for personal use _only_. 
 
-If you are *serious* about checking everything before the system upgrade, you
+If you are **serious** about checking everything before to upgrade system, you
 probably want to check these links out:
 
 - [Pacmatic](http://kmkeen.com/pacmatic/) > Get emails about pending system
@@ -32,11 +32,11 @@ probably want to check these links out:
 ## scrapUP
 
 Archlinux-scrapUP will just show you the title of the latest new from
-archlinux.org before calling for `$ sudo pacman -Syu`. If the news's header is
+archlinux.org/news (optionally, before calling for `$ sudo pacman -Syu`). If the news's header is
 kind of new for you, you should probably avoid upgrading. In instead, go find
-out if you should something.
+out if you should do something about.
 
-PS: I'm no ArchExpert. The words above are there only for remind me that - damn!
+PS: I'm no ArchExpert. The words above are there only as a reminder that - damn!
 - I should have read that before!
 
 ## Requirements
@@ -70,7 +70,15 @@ sudo pacman -Syu`. As of today (ho, well) it looks like this:
 ```
 $ scrapUP 
 
-Phasing out i686 support
+
+0 -  Phasing out i686 support
+1 -  xorg-server 1.19.1 is now in extra 
+2 -  OpenVPN 2.4.0 update requires administrative interaction 
+
 
 [sudo] password for YOUR_USERNAME: 
 ```
+
+### Heads up again!
+The sudo is not on the script. It is on the bashrc. Just to be clear. Are you
+still reading? Go get pacmatic.
