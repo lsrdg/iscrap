@@ -9,7 +9,7 @@ soup = archsoup.find_all('td', attrs={'class':'wrap'})
 
 print('\n\n')
 
-for news in soup[:3]:
-    print(news.getText(), '\n')
+for n,news in enumerate(soup[:3]):
+    print(n, '- ', news.getText())
 
 print('\n\n')
