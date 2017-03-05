@@ -16,7 +16,7 @@ upgrading.
 
 ### Heads up!
 
-`lsrdg/archlinux-scrapUP` is just a damn small script, written by an un-developer and it
+`lsrdg/iscrap` is just a damn small script, written by an un-developer and it
 has such a tiny functionality that it shouldn't even deserve your attention. It was
 written for personal use _only_. 
 
@@ -29,12 +29,46 @@ probably want to check these links out:
   utilities](https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Utilities)
   > wiki.archlinux.org page with real tips.
 
-## scrapUP
+## Iscrap
 
-Archlinux-scrapUP will just show you the title of the latest new from
+Iscrap will just show the title of the latest 3 news from
 archlinux.org/news (optionally, before calling for `$ sudo pacman -Syu`). If the news's header is
 kind of new for you, you should probably avoid upgrading. In instead, go find
 out if you should do something about.
+
+Optionally, there's the `-r` command:
+
+```
+$ iscrap fetch
+
+
+0 -  mesa  with libglvnd support is now in testing
+1 -  Phasing out i686 support
+2 -  xorg-server 1.19.1 is now in extra
+
+
+$ iscrap -r 1
+
+             Phasing out i686 support 
+
+
+             Due to the decreasing popularity of i686 among the developers and
+             the
+             community, we have decided to phase out the support of this
+             architecture.
+             The decision means that February ISO will be the last that allows
+             to
+             install 32 bit Arch Linux. The next 9 months are deprecation
+             period,
+             during which i686 will be still receiving upgraded packages.
+             Starting
+             from November 2017, packaging and repository tools will no longer
+             require that from maintainers, effectively making i686 unsupported.
+             However, as there is still some interest in keeping i686 alive, we
+             would...
+
+```
+
 
 PS: I'm no ArchExpert. The words above are there only as a reminder that - damn!
 - I should have read that before!
