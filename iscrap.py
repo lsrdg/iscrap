@@ -11,7 +11,7 @@ res.raise_for_status()
 archsoup = bs4.BeautifulSoup(res.text, 'lxml')
 
 soup = archsoup.find_all('td', attrs={'class':'wrap'})
-def mainFunction(numberOfNews):
+def mainFunction():
 
     print('\n\n') 
 
@@ -46,7 +46,8 @@ if args.read:
     argRead(args.read[0])
 
 elif args.fetch:
-    mainFunction(args.fetch[0])
+    mainFunction()
 else:
+    mainFunction()
     print('ooops')
 
