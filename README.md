@@ -85,7 +85,7 @@ Clone this repository and add the following to your `.bash.rc`:
 
 ```
 # scrap archlinux.org before full upgrade
-alias scrapUP='python ~/PATH-TO/archlinux-scrapUP/scrapUP.py ; sudo pacman -Syu'
+alias iscrap='python ~/PATH-TO/archlinux-iscrap/iscrap.py ; sudo pacman -Syu'
 ```
 
 
@@ -98,11 +98,11 @@ A few things should also be noted:
 
 ## Usage
 
-Just run `$ scrapUP` and it will print the title of the latest new and call `$
+Just run `$ iscrap` and it will print the title of the latest new and call `$
 sudo pacman -Syu`. As of today (ho, well) it looks like this:
 
 ```
-$ scrapUP 
+$ iscrap 
 
 
 0 -  Phasing out i686 support
