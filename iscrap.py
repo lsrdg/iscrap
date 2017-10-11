@@ -41,13 +41,11 @@ def argRead(number):
     print('\n\n\t\t\t', headerSoup, '\n\n')
     print(soup.ljust(1), '\n')
     
+def menuInit():
+    if args.read:
+        argRead(args.read[0])
 
-if args.read:
-    argRead(args.read[0])
+    else:
+        mainFunction()
 
-elif args.fetch:
-    mainFunction()
-else:
-    mainFunction()
-    print('ooops')
-
+menuInit()
