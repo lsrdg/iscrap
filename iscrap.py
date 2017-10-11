@@ -15,8 +15,8 @@ def mainFunction():
 
     print('\n\n') 
 
-    for n,news in enumerate(soup[:3]):
-        print(n, '- ', news.getText())
+    for n,news in enumerate(soup[:3], start=1):
+        print('{} - {}'.format(n, news.getText()))
 
     print('\n\n')
 
