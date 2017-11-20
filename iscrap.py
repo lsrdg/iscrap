@@ -1,6 +1,5 @@
 import requests
 import bs4
-import lxml
 import argparse
 
 parser = argparse.ArgumentParser()
