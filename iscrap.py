@@ -19,6 +19,11 @@ soup = archsoup.find_all('td', attrs={'class': 'wrap'})
 
 
 def mainFunction():
+    '''
+    Parse archlinux.org/news and print news titles.
+
+    '''
+
     print('\n\n')
 
     for n, news in enumerate(soup[:3], start=1):
@@ -28,6 +33,10 @@ def mainFunction():
 
 
 def argRead(number):
+    '''
+    Print the new choosed by the user.
+    '''
+
     number = int(number)
     allNews = []
     for n, a in enumerate(archsoup.find('tbody').find_all('a', href=True)):
@@ -48,6 +57,10 @@ def argRead(number):
 
 
 def menuInit():
+    '''
+    Argparser organizer.
+    '''
+
     if args.read:
         argRead(args.read[0])
 
