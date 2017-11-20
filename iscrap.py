@@ -5,7 +5,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--read", help="Read news. Use it with the number \
-       on the left of the title")
+       on the left of the title", nargs='?')
 parser.add_argument("-f", "--fetch", help="Shows the title of the 3 latest \
        news", nargs='*')
 args = parser.parse_args()
@@ -18,7 +18,7 @@ archsoup = bs4.BeautifulSoup(res.text, 'lxml')
 soup = archsoup.find_all('td', attrs={'class': 'wrap'})
 
 
-def mainFunction():
+def argFetch(number):
     '''
     Parse archlinux.org/news and print news titles.
 
@@ -26,7 +26,7 @@ def mainFunction():
 
     print('\n\n')
 
-    for n, news in enumerate(soup[:3], start=1):
+    for n, news in enumerate(soup[:number], start=1):
         print('{} - {}'.format(n, news.getText()))
 
     print('\n\n')
@@ -64,8 +64,12 @@ def menuInit():
     if args.read:
         argRead(args.read[0])
 
+    elif args.fetch:
+        number = int(args.fetch[0])
+        argFetch(number)
+
     else:
-        mainFunction()
+        argFetch(3)
 
 
 menuInit()
