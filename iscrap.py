@@ -37,7 +37,7 @@ def argRead(number):
     Print the new choosed by the user.
     '''
 
-    number = int(number)
+    number = int(number) - 1
     allNews = []
     for n, a in enumerate(archsoup.find('tbody').find_all('a', href=True)):
         allNews.append(a['href'])
