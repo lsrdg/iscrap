@@ -1,6 +1,13 @@
-import requests
-import bs4
+"""
+Iscrap  | Scrap archlinux.org/news before upgrading
+
+---
+v0.0.0+
+"""
+
 import argparse
+import bs4
+import requests
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--read", help="Read news. Use it with the number \
@@ -17,7 +24,7 @@ archsoup = bs4.BeautifulSoup(res.text, 'lxml')
 soup = archsoup.find_all('td', attrs={'class': 'wrap'})
 
 
-def argFetch(number):
+def fetch_func(number):
     '''
     Parse archlinux.org/news and print news titles.
 
@@ -25,50 +32,50 @@ def argFetch(number):
 
     print('\n\n')
 
-    for n, news in enumerate(soup[:number], start=1):
-        print('{} - {}'.format(n, news.getText()))
+    for position, news in enumerate(soup[:number], start=1):
+        print('{} - {}'.format(position, news.getText()))
 
     print('\n\n')
 
 
-def argRead(number):
+def read_func(number):
     '''
     Print the new choosed by the user.
     '''
 
     number = int(number) - 1
-    allNews = []
-    for n, a in enumerate(archsoup.find('tbody').find_all('a', href=True)):
-        allNews.append(a['href'])
+    all_news = []
+    for a_new in enumerate(archsoup.find('tbody').find_all('a', href=True)):
+        all_news.append(a_new['href'])
 
-    theNew = allNews[number]
-    res = requests.get('https://www.archlinux.org/' + theNew)
+    the_new = all_news[number]
+    res = requests.get('https://www.archlinux.org/' + the_new)
     res.raise_for_status()
 
     newsoup = bs4.BeautifulSoup(res.text, 'lxml')
 
-    headerSoup = newsoup.find('h2').getText()
+    header_soup = newsoup.find('h2').getText()
     soup = newsoup.find('div', attrs={'class': 'article-content'}).getText()
     # find_all('p')
 
-    print('\n\n\t\t\t', headerSoup, '\n\n')
+    print('\n\n\t\t\t', header_soup, '\n\n')
     print(soup.ljust(1), '\n')
 
 
-def menuInit():
+def menu_init():
     '''
     Argparser organizer.
     '''
 
     if args.read:
-        argRead(args.read[0])
+        read_func(args.read[0])
 
     elif args.fetch:
         number = int(args.fetch[0])
-        argFetch(number)
+        fetch_func(number)
 
     else:
-        argFetch(3)
+        fetch_func(3)
 
 
-menuInit()
+menu_init()
