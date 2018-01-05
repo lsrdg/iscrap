@@ -39,7 +39,7 @@ archlinux.org/news (optionally, before calling for `$ sudo pacman -Syu`). If the
 kind of new for you, you should probably avoid upgrading. In instead, go find
 out if you should do something about.
 
-Optionally, there's the `-r` command:
+Optionally, there's the `read` command:
 
 ```
 $ iscrap fetch
@@ -50,7 +50,7 @@ $ iscrap fetch
 3 -  xorg-server 1.19.1 is now in extra
 
 
-$ iscrap -r 2
+$ iscrap read 2
 
              Phasing out i686 support 
 
@@ -113,7 +113,7 @@ $ sudo pacman -S python-beautifulsoup4
 Clone this repository. From within the repository run:
 
 ```
-$ python iscrap.py -f
+$ python iscrap.py fetch
 ```
 
 That's it.

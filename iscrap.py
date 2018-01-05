@@ -8,20 +8,26 @@ v0.0.0+
 import argparse
 import bs4
 import requests
+import re
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-r", "--read", help="Read news. Use it with the number \
-       on the left of the title", nargs='?')
-parser.add_argument("-f", "--fetch", help="Shows the title of the 3 latest \
-       news", nargs='*')
-args = parser.parse_args()
+class soupers:
 
-res = requests.get('https://www.archlinux.org/news/')
-res.raise_for_status()
+    def __init__(self):
+        self.res = requests.get('https://www.archlinux.org/news/')
+ 
 
-archsoup = bs4.BeautifulSoup(res.text, 'lxml')
+    def return_arch_soup(self):
+        res = self.res
+        res.raise_for_status()
+        arch_soup = bs4.BeautifulSoup(res.text, 'lxml')
 
-soup = archsoup.find_all('td', attrs={'class': 'wrap'})
+        return arch_soup
+
+    def return_soup(self, arch_soup):
+
+        soup = arch_soup.find_all('td', attrs={'class': 'wrap'})
+
+        return soup
 
 
 def fetch_func(number):
@@ -29,6 +35,11 @@ def fetch_func(number):
     Parse archlinux.org/news and print news titles.
 
     '''
+
+    number = int(number)
+    soups = soupers()
+    arch_soup = soups.return_arch_soup()
+    soup = soups.return_soup(arch_soup)
 
     print('\n\n')
 
@@ -44,9 +55,13 @@ def read_func(number):
     '''
 
     number = int(number) - 1
+    soups = soupers()
+    arch_soup= soups.return_arch_soup()
     all_news = []
-    for a_new in enumerate(archsoup.find('tbody').find_all('a', href=True)):
-        all_news.append(a_new['href'])
+
+    for a_new in enumerate(arch_soup.find('tbody').find_all('a', href=True)):
+      r = re.search("(href=\")(?P<href>.+)(\"\s)", str(a_new))
+      all_news.append(r[2])
 
     the_new = all_news[number]
     res = requests.get('https://www.archlinux.org/' + the_new)
@@ -62,20 +77,53 @@ def read_func(number):
     print(soup.ljust(1), '\n')
 
 
-def menu_init():
+def parse_arguments():
+    """
+    Parse and return arguments.
+    """
+
+    parser = argparse.ArgumentParser("cliclock [COMMAND] [ARGUMENTS]")
+
+    parser.add_argument("--version", "-v", action="version", version="v0.0.0+")
+
+    subparsers = parser.add_subparsers(help="Types of commands")
+
+    fetch_parser = subparsers.add_parser("fetch", help="Shows the title of the \
+            3 latest news")
+    fetch_parser.add_argument("number", type=int, help="An integer of how many \
+            news' titles will be fetched.")
+    fetch_parser.set_defaults(func=fetch_func)
+
+    read_parser = subparsers.add_parser("read", help="Shows the title of the 3 \
+            latest news")
+    read_parser.add_argument("number", type=int, help="An integer representing \
+            which new will be read.")
+    read_parser.set_defaults(func=read_func)
+
+    return vars(parser.parse_args())
+
+
+def main():
     '''
     Argparser organizer.
     '''
 
-    if args.read:
-        read_func(args.read[0])
+    args_dict = parse_arguments()
 
-    elif args.fetch:
-        number = int(args.fetch[0])
+    if re.search("fetch_func", str(args_dict["func"])):
+        number = str(args_dict["number"])
         fetch_func(number)
 
+    elif re.search("read_func", str(args_dict["func"])):
+        number = str(args_dict["number"])
+        read_func(number)
+
+    elif re.search("version", str(args_dict["func"])):
+        print(args_dict)
+
     else:
-        fetch_func(3)
+        print("Ooops!")
 
 
-menu_init()
+if __name__ == '__main__':
+    main()
