@@ -10,6 +10,7 @@ import re
 import bs4
 import requests
 
+
 class Soupers:
     """
     Collect of soup-related functions.
@@ -20,7 +21,6 @@ class Soupers:
         Get requests.
         """
         self.res = requests.get('https://www.archlinux.org/news/')
-
 
     def return_arch_soup(self):
         """
