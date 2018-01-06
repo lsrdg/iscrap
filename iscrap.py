@@ -6,28 +6,31 @@ v0.0.0+
 """
 
 import argparse
+import re
 import bs4
 import requests
-import re
 
-class soupers:
+class Soupers:
+    """
+    Collect of soup-related functions.
+    """
 
     def __init__(self):
+        """
+        Get requests.
+        """
         self.res = requests.get('https://www.archlinux.org/news/')
- 
+
 
     def return_arch_soup(self):
+        """
+        Returns main arch soup.
+        """
         res = self.res
         res.raise_for_status()
         arch_soup = bs4.BeautifulSoup(res.text, 'lxml')
 
         return arch_soup
-
-    def return_soup(self, arch_soup):
-
-        soup = arch_soup.find_all('td', attrs={'class': 'wrap'})
-
-        return soup
 
 
 def fetch_func(number):
@@ -37,9 +40,9 @@ def fetch_func(number):
     '''
 
     number = int(number)
-    soups = soupers()
+    soups = Soupers()
     arch_soup = soups.return_arch_soup()
-    soup = soups.return_soup(arch_soup)
+    soup = arch_soup.find_all('td', attrs={'class': 'wrap'})
 
     print('\n\n')
 
@@ -55,13 +58,13 @@ def read_func(number):
     '''
 
     number = int(number) - 1
-    soups = soupers()
-    arch_soup= soups.return_arch_soup()
+    soups = Soupers()
+    arch_soup = soups.return_arch_soup()
     all_news = []
 
     for a_new in enumerate(arch_soup.find('tbody').find_all('a', href=True)):
-      r = re.search("(href=\")(?P<href>.+)(\"\s)", str(a_new))
-      all_news.append(r[2])
+        href = re.search(r'(href=")(?P<href>.+)("\s)', str(a_new))
+        all_news.append(href[2])
 
     the_new = all_news[number]
     res = requests.get('https://www.archlinux.org/' + the_new)

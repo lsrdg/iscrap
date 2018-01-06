@@ -1,0 +1,8 @@
+language: python
+python:
+  - "3.6"
+  - "pypy3"
+install:
+  - pip install --upgrade pip && pip install flake8
+script:
+  - flake8 iscrap.py
