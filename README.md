@@ -1,5 +1,8 @@
 # Archlinux.org's scrapper
 
+[![Build
+Status](https://travis-ci.org/lsrdg/iscrap.svg?branch=master)](https://travis-ci.org/lsrdg/iscrap)
+
 According to the
 [ArchWiki](https://wiki.archlinux.org/index.php/System_maintenance#Read_before_upgrading_the_system):
 
