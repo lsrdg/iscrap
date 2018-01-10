@@ -85,37 +85,44 @@ PS: I'm no ArchExpert. The words above are there only as a reminder that - damn!
 - [Python 3*](https://wiki.archlinux.org/index.php/Python#Python_3) with the
   _requests_, _argparse_, and _bs4_ modules.
 
+take a look at [requirements.txt](requirements.txt) for a complete list.
+
 ## Installing
 
 ### Getting ready
 
-If you have python3 and the
-[bs4](https://www.crummy.com/software/BeautifulSoup/) module you are ready to
-go. By the way, your Archlinux probably alrady have python:
+Your Archlinux most likely alrady have python. Just be sure the version is at
+least 3.6+:
 
 ```
 $ python --version
 Python 3.6.3
 ```
 
-If you don't have BeautifulSoup (bs4), install it with
-[pip](https://wiki.archlinux.org/index.php/Python#Package_management):
+### With PIP
+
+If you know your way with Python and the command line, all you need is to
+install the requirements:
 
 ```
-$ pip install --user bs4
+$ pip install -r requirements.txt
 ```
+
+### With Pacman
 
 ...or with [Pacman](https://wiki.archlinux.org/index.php/Pacman) in case you
 don't need pip for other stuff etc:
 
 ```
 $ sudo pacman -S python-beautifulsoup4
+$ sudo pacman -S python-requests
 ```
-
 
 Clone this repository. From within the repository run:
 
 ```
+$ git clone https://github.com/lsrdg/iscrap.git
+$ cd iscrap/
 $ python iscrap.py fetch
 ```
 
